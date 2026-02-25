@@ -1,0 +1,32 @@
+---
+title: "Country Analysis"
+---
+
+This page tracks how life expectancy changes over time for one country.
+
+```{python}
+#| echo: true
+#| eval: true
+#| fig-cap: "Life expectancy over time for a selected country"
+#| label: fig-country
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("gapminder.csv")
+
+country_name = "United States"  # change if needed
+c = df[df["country"] == country_name].sort_values("year")
+
+print("Selected country:", country_name)
+print("Rows:", c.shape[0])
+
+plt.plot(c["year"], c["life_expectancy"], marker="o")
+plt.xlabel("Year")
+plt.ylabel("Life expectancy")
+plt.title(f"Life Expectancy Over Time: {country_name}")
+plt.tight_layout()
+plt.show()
+```
+
+This plot shows the trend in life expectancy for the selected country.
